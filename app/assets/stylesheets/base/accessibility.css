@@ -1,0 +1,116 @@
+/* ==========================================================================
+   ACCESSIBILITY BASE STYLES
+   --------------------------------------------------------------------------
+   Role:
+   - Provides global accessibility defaults that apply across the entire site.
+   - Ensures the interface is usable via keyboard, screen readers, and other
+     assistive technologies before any component-level styling is applied.
+
+   What belongs here:
+   - Focus styles (:focus-visible)
+   - Reduced motion support (prefers-reduced-motion)
+   - Visually-hidden helpers for screen readers
+   - Any global rules that improve accessibility without altering layout
+
+   What does NOT belong here:
+   - Visual design decisions (colour, spacing, typography)
+   - Component-specific accessibility tweaks (these live with the component)
+   - Page-specific overrides
+
+   How this fits the system:
+   - These rules are intentionally minimal and defensive.
+   - They ensure accessibility is the default, not something added later.
+   - Components may enhance or extend these rules, but should never remove them.
+
+   Goal:
+   - Make the site usable for all users by default, without relying on
+     JavaScript or per-component fixes.
+   ========================================================================== */
+
+
+/* ==========================================================================
+   KEYBOARD FOCUS INDICATORS
+   --------------------------------------------------------------------------
+   - Ensures all interactive elements have a clear, visible focus state when
+     navigated via keyboard.
+   - Uses :focus-visible so mouse users do not see unnecessary outlines.
+   - Uses currentColor to inherit colour naturally from context.
+   ========================================================================== */
+:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+
+/* ==========================================================================
+   REDUCED MOTION SUPPORT
+   --------------------------------------------------------------------------
+   - Respects the user’s operating system “Reduce motion” preference.
+   - Minimises animations and transitions for users who experience motion
+     sensitivity, dizziness, or cognitive discomfort.
+   - Applies globally and defensively.
+
+   Notes:
+   - Durations are reduced to near-zero rather than disabled entirely to avoid
+     breaking layout or component logic.
+   - This rule guarantees reduced motion even if components define animations.
+
+   References:
+   - WCAG 2.3 (Seizures and Physical Reactions)
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+
+/* ==========================================================================
+   VISUALLY HIDDEN CONTENT (SCREEN READER ONLY)
+   --------------------------------------------------------------------------
+   - Hides content visually while keeping it accessible to screen readers.
+   - Used for labels, helper text, and other non-visual affordances.
+   - This class should be applied intentionally and sparingly.
+   ========================================================================== */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+
+/* ==========================================================================
+   SKIP LINK SUPPORT (OPTIONAL BUT RECOMMENDED)
+   --------------------------------------------------------------------------
+   - Allows keyboard users to skip repetitive navigation.
+   - Typically paired with a “Skip to content” link at the top of the page.
+   - Hidden by default and revealed on focus.
+   ========================================================================== */
+.skip-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0.5rem 1rem;
+  background: currentColor;
+  color: white;
+  transform: translateY(-100%);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}

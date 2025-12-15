@@ -1,0 +1,63 @@
+/* ==========================================================================
+   LAYOUT STYLES
+   --------------------------------------------------------------------------
+   Role:
+   - Defines the structural layout of the application.
+   - Responsible for page-level scaffolding such as containers, grids, and
+     the relationship between major regions (header, main, footer).
+
+   What belongs here:
+   - Page containers (e.g. standard page width + gutters)
+   - Structural layout helpers (grids, columns, wrappers)
+   - Header / footer layout rules (not visual styling)
+   - Responsive behaviour tied to viewport size
+
+   What does NOT belong here:
+   - Visual design decisions (colour, typography, shadows)
+   - Reusable UI components (buttons, cards, forms)
+   - Page-specific layout exceptions
+
+   How this fits the system:
+   - Layout styles sit between base styles and components.
+   - They define *where* things live, not *how* they look.
+   - Components assume layout primitives exist but do not depend on
+     page-specific structure.
+
+   Responsive philosophy:
+   - Layout uses consistent, named breakpoints inspired by Airbnb’s grid
+     system (e.g. 744px, 1128px, 1440px).
+   - Content is full-width on small screens and progressively constrained
+     on larger viewports to preserve readability.
+
+   Goal:
+   - Provide a small, predictable set of layout primitives that can be reused
+     across the entire site without duplication or overrides.
+   ========================================================================== */
+
+/* ==========================================================================
+   STANDARD PAGE CONTAINER
+   - Purpose: consistent, responsive page width + gutters.
+   - Behaviour: full width on small screens, capped width on large screens,
+     with gutters that increase at Airbnb-style breakpoints.
+   ========================================================================== */
+
+.standard-container {
+  width: 100%;
+  max-width: var(--bp-lg);          /* cap content width on large screens */
+  margin-inline: auto;             /* center */
+  padding-inline: 24px;            /* default gutters (mobile) */
+}
+
+/* ≥ 744px (Airbnb "small") */
+@media (min-width: 744px) {
+  .standard-container {
+    padding-inline: 40px;
+  }
+}
+
+/* ≥ 1128px (Airbnb "medium") */
+@media (min-width: 1128px) {
+  .standard-container {
+    padding-inline: 80px;
+  }
+}

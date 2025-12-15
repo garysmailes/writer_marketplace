@@ -1,0 +1,118 @@
+/*
+ * This is a manifest file that'll be compiled into application.css.
+ *
+ * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
+ * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
+ * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
+ * depending on specificity.
+ *
+ * Consider organizing styles into separate files for maintainability.
+ */
+
+
+/* ==========================================================================
+   Foundations
+   - Purpose: bring in third-party foundations first so everything else can
+     rely on them.
+   - reset.css: normalises browser defaults (margins, headings, etc.)
+   - open-props.css: provides the raw design tokens (e.g. --size-4, --radius-3)
+   - Example use (after these load): padding: var(--size-4); box-shadow: var(--shadow-2);
+   ========================================================================== */
+@import "foundations/reset.css";
+@import "foundations/open-props.css";
+
+/* ==========================================================================
+   DESIGN SYSTEM (Settings / Tokens)
+   - Purpose: define *your* semantic tokens by mapping them to Open Props (or
+     hard values). This keeps your UI stable if Open Props updates.
+   - Keep: variables only (generally :root / [data-theme] blocks).
+   - Example (in settings/theme.css):
+       :root {
+         --space-md: var(--size-4);
+         --radius:   var(--radius-3);
+         --brand:    var(--indigo-6);
+       }
+     Then in components:
+       .card { padding: var(--space-md); border-radius: var(--radius); }
+   ========================================================================== */
+
+@import "settings/theme.css";
+
+
+/* ==========================================================================
+   BASE STYLES (Global element defaults)
+   - Purpose: sensible defaults for raw HTML elements so pages look “designed”
+     before components kick in.
+   - Includes: typography, links, lists, form element defaults.
+   - Example (in base/base.css):
+       body { font-family: var(--font-sans); background: var(--surface-1); color: var(--text-1); }
+       a    { color: var(--brand); text-underline-offset: 0.15em; }
+   - Accessibility (in base/accessibility.css):
+       :focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+       @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+   ========================================================================== */
+
+@import "base/base.css";
+@import "base/accessibility.css";
+
+
+/* ==========================================================================
+   LAYOUT (Page structure / shell)
+   - Purpose: structural CSS for the site frame and reusable layout patterns.
+   - Includes: containers, header/footer layout, grids, spacing rules for page sections.
+   - Example (in layout/layout.css):
+       .container { max-width: 72rem; margin-inline: auto; padding-inline: var(--space-md); }
+       .layout    { min-height: 100vh; display: grid; grid-template-rows: auto 1fr auto; }
+   - Example (in layout/header.css):
+       .site-header { padding-block: var(--space-sm); border-bottom: 1px solid var(--surface-3); }
+   ========================================================================== */
+
+@import "layout/layout.css";
+/*
+@import "layout/header.css";
+@import "layout/footer.css";
+*/
+
+/* ==========================================================================
+   COMPONENTS (Reusable UI building blocks)
+   - Purpose: reusable, self-contained UI pieces (buttons, cards, forms, nav).
+   - Rule: components should not depend on a specific page; avoid page selectors.
+   - Examples:
+     button.css:
+       .btn { padding: var(--space-sm) var(--space-md); border-radius: var(--radius); }
+       .btn--primary { background: var(--brand); color: var(--brand-contrast); }
+     card.css:
+       .card { background: var(--surface-2); border-radius: var(--radius); box-shadow: var(--shadow-2); }
+     form.css:
+       .field { display: grid; gap: var(--space-xs); }
+   ========================================================================== */
+/*
+@import "components/button.css";
+@import "components/card.css";
+@import "components/form.css";
+*/
+
+/* ==========================================================================
+   UTILITIES (Small helpers; loaded late so they can “win”)
+   - Purpose: single-purpose helper classes that you can apply anywhere.
+   - Guideline: utilities should be tiny and predictable; no side effects.
+   - Examples (in utilities/utilities.css):
+       .stack > * + * { margin-top: var(--space-md); }
+       .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
+       .text-center { text-align: center; }
+   ========================================================================== */
+/*
+@import "utilities/utilities.css";
+*/
+
+/* ==========================================================================
+   PAGES (Optional one-offs; last)
+   - Purpose: page-specific CSS that doesn’t belong in a reusable component.
+   - Rule: if you use it twice, promote it to a component.
+   - Example (in pages/home.css):
+       .home-hero { padding-block: var(--space-lg); }
+       .home-grid { display: grid; gap: var(--space-md); }
+   ========================================================================== */
+/*
+@import "pages/home.css";
+*/

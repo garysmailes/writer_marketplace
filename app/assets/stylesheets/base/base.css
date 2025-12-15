@@ -1,0 +1,106 @@
+/* ==========================================================================
+   BASE STYLES / DEFAULTS
+   --------------------------------------------------------------------------
+   Role:
+   - Applies sensible global defaults to raw HTML elements.
+   - Establishes typography, spacing, and behaviour before any components
+     or layout rules are applied.
+
+   What belongs here:
+   - Element selectors (html, body, h1–h6, p, a, ul, form elements)
+   - Default font-family and line-height
+   - Link and text behaviour
+   - Minimal form normalisation (beyond reset.css)
+
+   What does NOT belong here:
+   - Design decisions (those live in settings/theme.css)
+   - Reusable UI components (.button, .card, etc.)
+   - Page-specific or layout-specific rules
+
+   How this fits the system:
+   - Base styles *consume* tokens defined in theme.css.
+   - No hard-coded values; always use semantic variables
+     (e.g. var(--font-sans), var(--space-md)).
+
+   Goal:
+   - Ensure the site looks coherent and readable even with no components loaded.
+   ========================================================================== */
+
+
+/* ==========================================================================
+   TYPOGRAPHY — GLOBAL DEFAULTS
+   --------------------------------------------------------------------------
+   - Applies the default UI font and establishes readable line height.
+   - These rules define document-wide typographic behaviour.
+   - All font choices reference semantic tokens from settings/theme.css.
+   ========================================================================== */
+html {
+  font-family: var(--font-sans);
+}
+
+body {
+  line-height: 1.6;
+  text-rendering: optimizeLegibility;
+}
+
+
+/* ==========================================================================
+   TYPOGRAPHY — LONG-FORM / EDITORIAL (.prose)
+   --------------------------------------------------------------------------
+   - Opt-in serif typography for long-form reading.
+   - Used for project briefs, guides, articles, and other content-heavy areas.
+   - Keeps UI text sans-serif while improving readability where needed.
+   ========================================================================== */
+.prose {
+  font-family: var(--font-serif);
+  max-width: 70ch;
+}
+
+.prose p + p {
+  margin-top: 1em;
+}
+
+.prose li + li {
+  margin-top: 0.35em;
+}
+
+
+/* ==========================================================================
+   HEADINGS
+   --------------------------------------------------------------------------
+   - Tighter line-height for headings to maintain visual rhythm.
+   - Font-size and weight decisions live elsewhere (tokens / components).
+   ========================================================================== */
+h1,
+h2,
+h3 {
+  line-height: 1.2;
+}
+
+
+/* ==========================================================================
+   PARAGRAPHS
+   --------------------------------------------------------------------------
+   - Constrains measure for comfortable reading.
+   - Components may override this where wider text blocks are required.
+   ========================================================================== */
+p {
+  max-width: 70ch;
+}
+
+
+/* ==========================================================================
+   LINKS
+   --------------------------------------------------------------------------
+   - Keeps links visually consistent and accessible by default.
+   - Colour inheritance avoids accidental “brand leaks” in components.
+   ========================================================================== */
+a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+a:hover {
+  text-decoration-thickness: 2px;
+}
