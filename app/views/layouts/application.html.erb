@@ -24,6 +24,23 @@
   </head>
 
   <body>
+
+    <%= render "shared/account_notices" %>
+    <%= render "shared/flash_messages" %>
+    
     <%= yield %>
+
+    <% if authenticated? %>
+      <%= link_to "Account", account_overview_path %>
+    <% end %>
+
+    <%= link_to "Create account", sign_up_path %>
+
+    <% if authenticated? && !Current.user.verified_email? %>
+  <div class="notice">
+    <strong>Please verify your email to activate your account.</strong>
+    <%= button_to "Resend verification email", resend_email_verification_path, method: :post %>
+  </div>
+<% end %>
   </body>
 </html>

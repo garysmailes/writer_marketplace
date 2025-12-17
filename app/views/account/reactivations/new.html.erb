@@ -1,0 +1,14 @@
+<h1>Reactivate account</h1>
+
+<p>If your account is deactivated, we’ll email you a link to reactivate it.</p>
+
+<%= form_with url: request_reactivation_path, method: :post, local: true do %>
+  <div>
+    <%= label_tag :email_address, "Email" %><br>
+    <%= email_field_tag :email_address, params[:email_address], required: true, autofocus: true %>
+  </div>
+
+  <div style="margin-top: 1rem;">
+    <%= submit_tag "Send reactivation link" %>
+  </div>
+<% end %>

@@ -1,14 +1,70 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
+  # -------------------------------------------------
+  # Health check
+  # -------------------------------------------------
   get "up" => "rails/health#show", as: :rails_health_check
 
-   # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
-   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
-   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
+  # -------------------------------------------------
+  # Authentication (Rails 8 built-in)
+  # -------------------------------------------------
+  # Sessions:
+  # - sign in
+  # - sign out
+  resource :session
 
-   # Defines the root path route ("/")
-   root "pages#home"
+  # Password reset (token-based)
+  resources :passwords, param: :token
+
+  # -------------------------------------------------
+  # Registration (sign-up)
+  # -------------------------------------------------
+  # Accounts are created immediately and sessions start immediately.
+  # Email verification is required to unlock active marketplace actions.
+  get  "/sign_up", to: "registrations#new"
+  post "/sign_up", to: "registrations#create"
+
+  # -------------------------------------------------
+  # Email verification
+  # -------------------------------------------------
+  # One-time token sent via email.
+  get  "/verify_email/:token", to: "email_verifications#show", as: :verify_email
+  post "/email_verification/resend", to: "email_verifications#create", as: :resend_email_verification
+
+  # -------------------------------------------------
+  # Account lifecycle (namespaced)
+  # -------------------------------------------------
+  # Signed-in account area.
+  # Some pages require verification, some explicitly allow unverified users.
+  namespace :account do
+    # Verified-only account home
+    get  "/",          to: "overview#show",       as: :overview
+
+    # Self-serve deactivation (immediate + logout)
+    post "/deactivate", to: "deactivations#create", as: :deactivate
+  end
+
+  # Activation page (signed in, may be unverified)
+  # Kept as /activate for clarity and UX
+  get "/activate", to: "account/activations#show"
+
+  # -----------------
+  # Account reactivation (signed-out)
+  # -----------------
+  # Deactivated users cannot sign in, but can request reactivation by email.
+  get  "/reactivate",        to: "account/reactivations#new",    as: :reactivate_account
+  post "/reactivate",        to: "account/reactivations#create", as: :request_reactivation
+  get  "/reactivate/:token", to: "account/reactivations#show",   as: :reactivate_token
+
+
+  # -------------------------------------------------
+  # Development-only email inbox
+  # -------------------------------------------------
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  end
+
+  # -------------------------------------------------
+  # Root
+  # -------------------------------------------------
+  root "pages#home"
 end

@@ -1,0 +1,18 @@
+<div class="standard-container">
+<h1>Your account</h1>
+
+<p>
+  If you can see this page, your account is active and your email address
+  has been verified.
+</p>
+</div>
+
+<hr>
+
+<h2>Deactivate account</h2>
+<p>Your profile will be hidden and you’ll stop receiving emails.</p>
+
+<%= button_to "Deactivate account",
+              account_deactivate_path,
+              method: :post,
+              data: { turbo_confirm: "Deactivate your account now?" } %>

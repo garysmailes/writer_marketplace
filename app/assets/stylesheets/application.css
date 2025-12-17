@@ -86,6 +86,9 @@
      form.css:
        .field { display: grid; gap: var(--space-xs); }
    ========================================================================== */
+
+@import "components/account_notices.css";
+@import "components/flash_messages.css";
 /*
 @import "components/button.css";
 @import "components/card.css";

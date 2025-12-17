@@ -1,0 +1,21 @@
+/* Account notices
+   ----------------------------------------------------
+   Keep this calm and content-forward. It's governance UX.
+*/
+
+.notice {
+  border: 1px solid #ddd;
+  padding: 12px 14px;
+  margin: 14px 0;
+  border-radius: 6px;
+}
+
+.notice strong {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.notice form {
+  display: inline-block;
+  margin-top: 10px;
+}

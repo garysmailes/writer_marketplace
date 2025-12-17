@@ -1,0 +1,23 @@
+<h1>Create your account</h1>
+
+<%= form_with model: @user, url: sign_up_path do |f| %>
+
+  <div>
+    <%= f.label :email_address, "Email" %><br>
+    <%= f.email_field :email_address, autocomplete: "email", required: true %>
+  </div>
+
+  <div>
+    <%= f.label :password, "Password" %><br>
+    <%= f.password_field :password, autocomplete: "new-password", required: true %>
+  </div>
+
+  <div>
+    <%= f.label :password_confirmation, "Confirm password" %><br>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", required: true %>
+  </div>
+
+  <div>
+    <%= f.submit "Create account" %>
+  </div>
+<% end %>

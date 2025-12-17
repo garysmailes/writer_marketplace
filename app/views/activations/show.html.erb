@@ -1,0 +1,12 @@
+<h1>Activate your account</h1>
+
+<p><strong>Please verify your email to activate your account.</strong></p>
+
+<p>
+  You can browse and read profiles now, but you won’t be able to message,
+  post service requests, show interest, or leave reviews until your email is verified.
+</p>
+
+<%= button_to "Resend verification email",
+              resend_email_verification_path,
+              method: :post %>
