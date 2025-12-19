@@ -1,0 +1,90 @@
+.authentication-shell {
+    min-height: 100vh;
+  display: grid;
+  align-content: start;
+  justify-items: center;
+
+  padding-top: var(--size-10);
+  padding-left: var(--space-md);
+  padding-right: var(--space-md);
+  padding-bottom: var(--space-xl);
+
+  gap: var(--size-6);
+}
+
+.authentication-header {
+  text-align: center;
+  display: grid;
+  gap: var(--space-sm);
+}
+
+.authentication-mark {
+  width: 48px;
+  height: 48px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--border-subtle);
+  background: var(--surface-card);
+  font-weight: var(--font-weight-7);
+}
+
+.authentication-title {
+    font-size: var(--font-size-5);
+  font-weight: var(--font-weight-5);
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.card--authentication {
+  width: 100%;
+  max-width: var(--auth-width);
+  background: var(--surface-card-muted);
+}
+
+.authentication-footer {
+  width: 100%;
+  max-width: var(--auth-width);
+  text-align: center;
+  color: var(--text-muted);
+}
+
+.authentication-footer a {
+  color: var(--link);
+  text-decoration: none;
+}
+
+.authentication-footer a:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.authentication-shell {
+  /* GitHub has more top padding than side padding */
+  padding-top: var(--size-10);
+  gap: var(--space-lg);
+}
+
+.authentication-title {
+  /* GitHub title is understated */
+  font-size: var(--font-size-5);
+  font-weight: var(--font-weight-5);
+  letter-spacing: -0.01em;
+}
+
+.card--authentication {
+  padding: var(--size-7);
+}
+
+.card--authentication-secondary {
+  width: 100%;
+  max-width: var(--auth-width);
+  padding: var(--size-6);
+  text-align: center;
+}
+
+.authentication-footer-text {
+  margin: 0;
+  font-size: var(--font-size-1);
+  color: var(--text-1);
+}

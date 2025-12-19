@@ -56,4 +56,44 @@
   --bp-sm: 744px;
   --bp-md: 1128px;
   --bp-lg: 1440px;
+
+  /* --------------------------------------------------------------------------
+     Spacing + shape (semantic)
+  -------------------------------------------------------------------------- */
+  --space-xs: var(--size-2);
+  --space-sm: var(--size-3);
+  --space-md: var(--size-4);
+  --space-lg: var(--size-6);
+  --space-xl: var(--size-8);
+
+  --radius-sm: var(--radius-2);
+  --radius-md: var(--radius-3);
+
+  /* --------------------------------------------------------------------------
+     Colours (semantic)
+  -------------------------------------------------------------------------- */
+  --surface-page: var(--gray-1);
+  --surface-card: var(--gray-0);
+
+  --border-subtle: var(--gray-3);
+
+  --text-1: var(--gray-9);
+  --text-muted: var(--gray-7);
+
+  --link: var(--blue-7);
+
+  --brand: var(--green-7);
+  --brand-hover: var(--green-8);
+  --brand-contrast: var(--gray-0);
+
+  --focus: var(--blue-6);
+
+  /* --------------------------------------------------------------------------
+     Auth layout sizing
+  -------------------------------------------------------------------------- */
+  --auth-width: 420px;
+
+  --surface-card-muted: var(--gray-0);
+  --shadow-card: var(--shadow-2);
+
 }

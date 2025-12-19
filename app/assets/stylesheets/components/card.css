@@ -1,0 +1,14 @@
+.card {
+  background: var(--surface-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+}
+
+.card--authentication {
+  padding: var(--size-7);
+}
+
+.card--authentication-secondary {
+  padding: var(--size-6);
+}

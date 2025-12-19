@@ -1,0 +1,52 @@
+.form {
+  display: grid;
+  gap: var(--space-md);
+}
+
+.field {
+  display: grid;
+  gap: var(--space-xs);
+}
+
+.label-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  margin-bottom: var(--size-1);
+}
+
+.label {
+  font-size: var(--font-size-1);
+  font-weight: var(--font-weight-6);
+}
+
+.help-link {
+  font-size: var(--font-size-1);
+  color: var(--link);
+  text-decoration: none;
+}
+
+.help-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.input {
+  width: 100%;
+  padding: var(--size-3);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  background: var(--surface-card);
+  color: var(--text-1);
+}
+
+.input:hover {
+  border-color: var(--gray-4);
+}
+
+.input:focus-visible {
+  border-color: var(--focus);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--focus) 25%, transparent);
+  outline: none;
+}

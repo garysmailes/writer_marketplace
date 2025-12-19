@@ -89,11 +89,11 @@
 
 @import "components/account_notices.css";
 @import "components/flash_messages.css";
-/*
-@import "components/button.css";
+@import "components/buttons.css";
 @import "components/card.css";
-@import "components/form.css";
-*/
+@import "components/forms.css";
+@import "components/authentication.css";
+
 
 /* ==========================================================================
    UTILITIES (Small helpers; loaded late so they can “win”)

@@ -41,6 +41,10 @@ html {
 body {
   line-height: 1.6;
   text-rendering: optimizeLegibility;
+
+  background: var(--surface-page);
+  color: var(--text-1);
+
 }
 
 

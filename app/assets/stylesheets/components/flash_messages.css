@@ -1,0 +1,27 @@
+.flash {
+  width: 100%;
+  max-width: var(--auth-width);
+
+  padding: var(--size-4);
+  border-radius: var(--radius-sm);
+
+  font-size: var(--font-size-1);
+  line-height: 1.4;
+
+  border: 1px solid;
+}
+
+/* Error */
+.flash--alert,
+.flash--error {
+  background: var(--red-0);
+  border-color: var(--red-4);
+  color: var(--red-9);
+}
+
+/* Success / notice */
+.flash--notice {
+  background: var(--green-0);
+  border-color: var(--green-4);
+  color: var(--green-9);
+}

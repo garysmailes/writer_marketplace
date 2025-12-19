@@ -1,5 +1,8 @@
 <h1>Create your account</h1>
 
+  <!-- Error messages -->
+  <%= render "shared/flash_messages" %>
+
 <%= form_with model: @user, url: sign_up_path do |f| %>
 
   <div>

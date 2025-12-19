@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  layout "authentication"
   allow_unauthenticated_access only: %i[new create]
   before_action :redirect_authenticated_user!, only: :new
   rate_limit to: 10, within: 3.minutes, only: :create,

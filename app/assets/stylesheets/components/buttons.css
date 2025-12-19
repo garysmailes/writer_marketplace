@@ -1,0 +1,39 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+  line-height: 1;
+
+  padding: var(--size-3) var(--space-md);
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+
+  font-weight: var(--font-weight-6);
+  font-size: var(--font-size-2);
+
+  cursor: pointer;
+}
+
+.btn--full {
+  width: 100%;
+}
+
+.btn--primary {
+  background: var(--brand);
+  color: var(--brand-contrast);
+}
+
+.btn--primary:hover {
+  background: var(--brand-hover);
+}
+
+.btn--primary:active {
+  transform: translateY(1px);
+}
+
+button.btn {
+  appearance: none;
+  -webkit-appearance: none;
+}

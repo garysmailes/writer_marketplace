@@ -1,5 +1,5 @@
 <% flash.each do |type, message| %>
-  <div class="flash <%= type %>">
-    <%= sanitize(message, tags: %w[a], attributes: %w[href]) %>
+  <div class="flash flash--<%= type %>">
+    <%= message %>
   </div>
 <% end %>
