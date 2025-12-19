@@ -1,0 +1,25 @@
+.form-errors {
+  padding: var(--size-4);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--red-4);
+  background: var(--red-0);
+  color: var(--red-9);
+}
+
+.form-errors__title {
+  margin: 0 0 var(--size-2) 0;
+  font-weight: var(--font-weight-6);
+}
+
+.form-errors__list {
+  margin: 0;
+  padding-left: var(--size-5);
+}
+
+.field_with_errors .input {
+  border-color: var(--red-5);
+}
+
+.field_with_errors .input:focus-visible {
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--red-6) 25%, transparent);
+}

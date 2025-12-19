@@ -1,0 +1,10 @@
+<% if object&.errors&.any? %>
+  <div class="form-errors" role="alert" aria-live="polite">
+    <p class="form-errors__title">Please fix the following:</p>
+    <ul class="form-errors__list">
+      <% object.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

@@ -15,7 +15,8 @@
 class Account::BaseController < ApplicationController
   # All account-area pages require a signed-in user
   before_action :require_authentication!
-   before_action :require_active_account!
+  before_action :require_active_account!
+
 
   # NOTE:
   # Do NOT enforce email verification here.

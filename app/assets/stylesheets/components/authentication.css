@@ -88,3 +88,9 @@
   font-size: var(--font-size-1);
   color: var(--text-1);
 }
+
+.authentication-subtitle {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: var(--font-size-1);
+}

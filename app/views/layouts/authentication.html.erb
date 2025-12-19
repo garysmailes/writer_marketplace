@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html>
-
   <%= render "shared/head" %>
 
   <body>
-
     <%= render "shared/account_notices" %>
-    
-    <%= yield %>
+
+    <div class="authentication-shell">
+      <%= render "shared/authentication_header",
+            title: (content_for?(:auth_title) ? yield(:auth_title) : "") %>
+
+      <%= render "shared/flash_messages" %>
+
+      <%= yield %>
+    </div>
 
   </body>
 </html>

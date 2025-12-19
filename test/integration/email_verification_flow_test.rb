@@ -26,6 +26,7 @@ class EmailVerificationFlowTest < ActionDispatch::IntegrationTest
       email_address: user.email_address,
       password: password
     }
+    assert_response :redirect
   end
 
   test "GET /verify_email/:token verifies user and clears token material" do
@@ -34,7 +35,8 @@ class EmailVerificationFlowTest < ActionDispatch::IntegrationTest
 
     get verify_email_path(token)
 
-    assert_redirected_to new_session_path
+    assert_response :redirect
+    assert_redirected_to root_path
 
     user.reload
     assert user.verified_email?, "Expected user to be verified"
@@ -50,6 +52,7 @@ class EmailVerificationFlowTest < ActionDispatch::IntegrationTest
 
     get verify_email_path("definitely-not-a-real-token")
 
+    assert_response :redirect
     assert_redirected_to new_session_path
 
     user.reload
@@ -60,11 +63,11 @@ class EmailVerificationFlowTest < ActionDispatch::IntegrationTest
     user  = create_user(email: "verify_expired@example.com", password: "password", verified: false)
     token = user.generate_email_verification_token!
 
-    # Expire it (your model default expiry is 2.days)
     user.update!(verification_sent_at: 3.days.ago)
 
     get verify_email_path(token)
 
+    assert_response :redirect
     assert_redirected_to new_session_path
 
     user.reload
@@ -79,6 +82,7 @@ class EmailVerificationFlowTest < ActionDispatch::IntegrationTest
       post resend_email_verification_path
     end
 
+    assert_response :redirect
     assert_redirected_to new_session_path
 
     user.reload
@@ -93,7 +97,8 @@ class EmailVerificationFlowTest < ActionDispatch::IntegrationTest
       post resend_email_verification_path
     end
 
-    assert_redirected_to new_session_path
+    assert_response :redirect
+    assert_redirected_to root_path
   end
 
   test "POST /email_verification/resend does not enqueue email when already verified" do
@@ -104,6 +109,7 @@ class EmailVerificationFlowTest < ActionDispatch::IntegrationTest
       post resend_email_verification_path
     end
 
-    assert_redirected_to new_session_path
+    assert_response :redirect
+    assert_redirected_to root_path
   end
 end

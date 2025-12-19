@@ -1,19 +1,10 @@
 <% content_for :title, "Sign in" %>
-
-<div class="authentication-shell">
-  <header class="authentication-header">
-    <div class="authentication-mark" aria-hidden="true">
-      WM
-    </div>
-
-    <h1 class="authentication-title">Sign in to Writer Marketplace</h1>
-  </header>
-
-  <!-- Error messages -->
-  <%= render "shared/flash_messages" %>
+<% content_for :auth_title, "Sign in" %>
   
   <main class="card card--authentication">
     <%= form_with url: session_path, class: "form" do |form| %>
+
+    <%= render "shared/form_errors", object: @user %>
 
       <div class="field">
         <%= form.label :email_address, "Email address", class: "label" %>

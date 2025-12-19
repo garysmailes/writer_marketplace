@@ -20,13 +20,20 @@ class PasswordsController < ApplicationController
   end
 
   def update
-    if @user.update(params.permit(:password, :password_confirmation))
-      @user.sessions.destroy_all
-      redirect_to new_session_path, notice: "Password has been reset."
+    @user = User.find_by_password_reset_token!(params[:token])
+
+    @user.password = params[:password]
+    @user.password_confirmation = params[:password_confirmation]
+
+    if @user.save
+      redirect_to new_session_path, notice: "Your password has been updated. Please sign in."
     else
-      redirect_to edit_password_path(params[:token]), alert: "Passwords did not match."
+      render :edit, status: :unprocessable_entity
     end
+  rescue ActiveSupport::MessageVerifier::InvalidSignature, ActiveRecord::RecordNotFound
+    redirect_to new_password_path, alert: "That password reset link is invalid or has expired. Please request a new one."
   end
+
 
   private
     def set_user_by_token

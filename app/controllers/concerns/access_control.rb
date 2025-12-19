@@ -52,8 +52,9 @@ module AccessControl
     Current.session&.destroy
     cookies.delete(:session_id)
     reset_session
+
+    # Current only stores :session; user is delegated.
     Current.session = nil
-    Current.user = nil
   end
 
   # Redirect signed-in users away from logged-out-only pages

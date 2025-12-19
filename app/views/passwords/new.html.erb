@@ -1,40 +1,31 @@
 <% content_for :title, "Forgot password" %>
+<% content_for :auth_title, "Forgot password?" %>
 
-<div class="authentication-shell">
-  <header class="authentication-header">
-    <div class="authentication-mark" aria-hidden="true">
-      WM
+<main class="card card--authentication">
+  <%= form_with url: passwords_path, class: "form" do |form| %>
+
+    <%= render "shared/form_errors", object: @user %>
+    
+    <div class="field">
+      <%= form.label :email_address, "Email address", class: "label" %>
+      <%= form.email_field :email_address,
+            required: true,
+            autofocus: true,
+            autocomplete: "username",
+            placeholder: "you@example.com",
+            value: params[:email_address],
+            class: "input" %>
     </div>
 
-    <h1 class="authentication-title">Forgot your password?</h1>
-  </header>
+    <div class="form-actions">
+      <%= form.submit "Send reset link", class: "btn btn--primary btn--full" %>
+    </div>
+  <% end %>
+</main>
 
-  <!-- Error messages -->
-  <%= render "shared/flash_messages" %>
-
-  <main class="card card--authentication">
-    <%= form_with url: passwords_path, class: "form" do |form| %>
-      <div class="field">
-        <%= form.label :email_address, "Email address", class: "label" %>
-        <%= form.email_field :email_address,
-              required: true,
-              autofocus: true,
-              autocomplete: "username",
-              placeholder: "you@example.com",
-              value: params[:email_address],
-              class: "input" %>
-      </div>
-
-      <div class="form-actions">
-        <%= form.submit "Send reset link", class: "btn btn--primary btn--full" %>
-      </div>
-    <% end %>
-  </main>
-
-  <footer class="card card--authentication-secondary">
-    <p class="authentication-footer-text">
-      Remembered it?
-      <%= link_to "Back to sign in", new_session_path, class: "help-link" %>
-    </p>
-  </footer>
-</div>
+<footer class="card card--authentication-secondary">
+  <p class="authentication-footer-text">
+    Remembered it?
+    <%= link_to "Back to sign in", new_session_path, class: "help-link" %>
+  </p>
+</footer>
